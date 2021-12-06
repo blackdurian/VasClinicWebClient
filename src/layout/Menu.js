@@ -49,7 +49,7 @@ const Menu = ({ dense = false } ) => {
             >
                 <MenuItemLink
                     to={{
-                        pathname: '/employees',
+                        pathname: '/employees/clinic',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="Employees"
@@ -58,7 +58,7 @@ const Menu = ({ dense = false } ) => {
                 />
                 <MenuItemLink
                     to={{
-                        pathname: '/shift-board',
+                        pathname: '/shift/board',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="ShiftBoard"
@@ -111,7 +111,7 @@ const Menu = ({ dense = false } ) => {
             >
                 <MenuItemLink
                     to={{
-                        pathname: '/customers',
+                        pathname: '/recipients',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="Recipient List"
@@ -120,25 +120,25 @@ const Menu = ({ dense = false } ) => {
                 />
                 <MenuItemLink
                     to={{
-                        pathname: '/segments',
+                        pathname: '/appointments',
                         state: { _scrollToTop: true },
                     }}
-                    primaryText="Appointment"
+                    primaryText="Appointments"
                     leftIcon={<SvgIcon component={FaCalendarCheck} viewBox="0 0 600 476.6"/>}
                     dense={dense}
                 />
                 <MenuItemLink
                     to={{
-                        pathname: '/segments',
+                        pathname: '/vaccine/records',
                         state: { _scrollToTop: true },
                     }}
-                    primaryText="Vaccine History"
+                    primaryText="Vaccine Records"
                     leftIcon={<SvgIcon component={RiHistoryFill}/>}
                     dense={dense}
                 />
                 <MenuItemLink
                     to={{
-                        pathname: '/segments',
+                        pathname: '/invoices',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="Invoices"

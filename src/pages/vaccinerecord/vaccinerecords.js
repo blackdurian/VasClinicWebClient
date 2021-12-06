@@ -16,15 +16,7 @@ import {
 } from 'react-admin';
 
 
-
-const Filter = [
-    <TextInput source="q" label="Search" alwaysOn />,
-    <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
-        <SelectInput optionText="name" />
-    </ReferenceInput>,
-];
-
-export const VaccineList = (props) => {
+export const VaccineRecordsList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
@@ -47,29 +39,3 @@ export const VaccineList = (props) => {
         </List>
     );
 }
-
-
-export const PostEdit = props => (
-
-        <SimpleForm>
-            <TextInput disabled source="id" />
-            <ReferenceInput source="id" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-
-);
-
-export const PostCreate = props => (
-    <Create {...props}>
-        <SimpleForm>
-            <ReferenceInput source="id" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-    </Create>
-);

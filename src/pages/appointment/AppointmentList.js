@@ -24,7 +24,7 @@ const Filter = [
     </ReferenceInput>,
 ];
 
-export const VaccineList = (props) => {
+export const AppointmentList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
@@ -48,28 +48,3 @@ export const VaccineList = (props) => {
     );
 }
 
-
-export const PostEdit = props => (
-
-        <SimpleForm>
-            <TextInput disabled source="id" />
-            <ReferenceInput source="id" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-
-);
-
-export const PostCreate = props => (
-    <Create {...props}>
-        <SimpleForm>
-            <ReferenceInput source="id" reference="users">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="title" />
-            <TextInput multiline source="body" />
-        </SimpleForm>
-    </Create>
-);
