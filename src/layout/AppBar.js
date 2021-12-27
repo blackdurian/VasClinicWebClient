@@ -4,8 +4,6 @@ import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-
-
 import CustomUserMenu from "./CustomUserMenu";
 
 const useStyles = makeStyles({
@@ -30,7 +28,6 @@ const CustomAppBar = (props) => {
                 className={classes.title}
                 id="react-admin-title"
             />
-
             <span className={classes.spacer} />
         </AppBar>
     );

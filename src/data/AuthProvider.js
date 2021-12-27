@@ -156,7 +156,7 @@ export const authProvider = {
             let user = {
                 id: "",
                 fullName: getCurrentUser(),
-                avatar: ""
+                avatar: `https://avatars.dicebear.com/api/croodles-neutral/${getCurrentUser()}.svg`
             }
             try {
                 /*            const { id, fullName, avatar } = JSON.parse(localStorage.getItem('auth'));
