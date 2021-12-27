@@ -15,10 +15,12 @@ import {ShiftBoardList} from "../pages/shiftboard/ShiftBoardList";
 import {ShiftList} from "../pages/shift/ShiftList";
 import {RecipientList} from "../pages/recipients/RecipientList";
 import {AppointmentList} from "../pages/appointment/AppointmentList";
-import {VaccineRecordsList} from "../pages/vaccinerecord/vaccinerecords";
+import {VaccineRecordsList} from "../pages/vaccinerecord/VaccineRecordsList";
 import {InvoiceList} from "../pages/invoice/InvoiceList";
+import {SurveyResultList} from "../pages/surveyresult/SurveyResultList";
 
 import LoginWithTheme from "../pages/login/Login";
+
 
 
 const httpClient = (url, options = {}) => {
@@ -59,6 +61,7 @@ const App = () => (
         <Resource name="appointments" list={AppointmentList}/>
         <Resource name="vaccine/records" list={VaccineRecordsList}/>
         <Resource name="invoices" list={InvoiceList}/>
+        <Resource name="survey/results" list={SurveyResultList}/>
     </Admin>
 );
 export default App;

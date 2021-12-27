@@ -145,7 +145,17 @@ const Menu = ({ dense = false } ) => {
                     leftIcon={<SvgIcon component={FaFileInvoiceDollar} viewBox="0 0 500 446.6"/>}
                     dense={dense}
                 />
+                <MenuItemLink
+                    to={{
+                        pathname: '/survey/results',
+                        state: { _scrollToTop: true },
+                    }}
+                    primaryText="SurveyResult"
+                    leftIcon={<SvgIcon component={FaFileInvoiceDollar} viewBox="0 0 500 446.6"/>}
+                    dense={dense}
+                />
             </SubMenu>
+
         </div>
     );
 };
