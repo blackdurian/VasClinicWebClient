@@ -7,6 +7,7 @@ import simpleRestProvider from 'ra-data-simple-rest';
 import {API_BASE_URL} from '../constant/Config';
 import Dashboard from "../pages/dashboard/Dashboard";
 import CustomLayout from "../layout/Layout";
+//TODO : encapsulate to array for each page index.js
 import {ProfileShow} from "../pages/profile/ProfileShow";
 import {VaccineList} from "../pages/vaccine/VaccineList";
 import {EmployeeList} from "../pages/employee/EmployeeList";
@@ -20,8 +21,8 @@ import {InvoiceList} from "../pages/invoice/InvoiceList";
 import {SurveyResultList} from "../pages/surveyresult/SurveyResultList";
 
 import LoginWithTheme from "../pages/login/Login";
-
-
+import {EmployeeCreate} from "../pages/employee/EmployeeCreate";
+import {ShiftBoardCreate} from "../pages/shiftboard/ShiftBoardCreate";
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
@@ -47,21 +48,20 @@ const App = () => (
                    key="profile"
                    path="/profile"
                    render={() => <ProfileShow/>}
-
                />
            ]}
     >
         <Resource name="profile"/>
-        <Resource name="employees/clinic" list={EmployeeList}/>
-        <Resource name="shift/board" list={ShiftBoardList}/>
-        <Resource name="shift" list={ShiftList}/>
+        <Resource name="employees/clinic" list={EmployeeList} create={EmployeeCreate} options={{ label: 'Clinic Employees' }}/>
+        <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate}  options={{ label: 'ShiftBoard' }}/>
+        <Resource name="shift" list={ShiftList} options={{ label: 'Shift' }}/>
         <Resource name="vaccines" list={VaccineList}/>
-        <Resource name="vaccine/inventory" list={InventoryList}/>
+        <Resource name="vaccine/inventory" list={InventoryList} options={{ label: 'Vaccine Inventory'}}/>
+        <Resource name="vaccine/records" list={VaccineRecordsList} options={{ label: 'Vaccine Records' }}/>
         <Resource name="recipients" list={RecipientList}/>
         <Resource name="appointments" list={AppointmentList}/>
-        <Resource name="vaccine/records" list={VaccineRecordsList}/>
         <Resource name="invoices" list={InvoiceList}/>
-        <Resource name="survey/results" list={SurveyResultList}/>
+        <Resource name="survey/results" list={SurveyResultList} options={{ label: 'Survey Results' }}/>
     </Admin>
 );
 export default App;

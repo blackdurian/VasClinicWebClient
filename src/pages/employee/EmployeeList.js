@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useMediaQuery } from '@material-ui/core';
-import { SimpleList, List, Datagrid, EmailField, TextField } from 'react-admin';
+import { SimpleList, List, Datagrid, EmailField, TextField, BooleanField } from 'react-admin';
 
 export const EmployeeList = props => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
@@ -15,10 +15,10 @@ export const EmployeeList = props => {
                 />
             ) : (
                 <Datagrid>
-                    <TextField source="id" />
+                    <TextField source="id" label="Username"/>
                     <TextField source="name" />
-                    <TextField source="username" />
                     <EmailField source="email" />
+                    <BooleanField source="verified" />
                 </Datagrid>
             )}
         </List>

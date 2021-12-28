@@ -10,9 +10,9 @@ import VisitorIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
-import { RiMedicineBottleFill, RiFolderUserFill,RiHistoryFill } from "react-icons/ri";
+import { RiMedicineBottleFill, RiFolderUserFill,RiHistoryFill,RiFolderChartFill } from "react-icons/ri";
 import { MdInventory } from "react-icons/md";
-import { FaClinicMedical,FaUserMd,FaFileInvoiceDollar,FaCalendarCheck } from "react-icons/fa";
+import { FaClinicMedical,FaUserMd,FaFileInvoiceDollar,FaCalendarCheck,FaChartBar } from "react-icons/fa";
 
 import SubMenu from './SubMenu';
 
@@ -21,7 +21,8 @@ const Menu = ({ dense = false } ) => {
     const [state, setState] = useState({
         menuClinic:true,
         menuVaccine:true,
-        menuRecipient:true
+        menuRecipient:true,
+        menuSurvey:true
     });
 
     const open = useSelector((state) => state.admin.ui.sidebarOpen);
@@ -101,6 +102,15 @@ const Menu = ({ dense = false } ) => {
                     leftIcon={<SvgIcon component={MdInventory}/>}
                     dense={dense}
                 />
+                <MenuItemLink
+                    to={{
+                        pathname: '/vaccine/records',
+                        state: { _scrollToTop: true },
+                    }}
+                    primaryText="Vaccine Records"
+                    leftIcon={<SvgIcon component={RiHistoryFill}/>}
+                    dense={dense}
+                />
             </SubMenu>
             <SubMenu
                 handleToggle={() => handleToggle('menuRecipient')}
@@ -129,15 +139,6 @@ const Menu = ({ dense = false } ) => {
                 />
                 <MenuItemLink
                     to={{
-                        pathname: '/vaccine/records',
-                        state: { _scrollToTop: true },
-                    }}
-                    primaryText="Vaccine Records"
-                    leftIcon={<SvgIcon component={RiHistoryFill}/>}
-                    dense={dense}
-                />
-                <MenuItemLink
-                    to={{
                         pathname: '/invoices',
                         state: { _scrollToTop: true },
                     }}
@@ -145,17 +146,24 @@ const Menu = ({ dense = false } ) => {
                     leftIcon={<SvgIcon component={FaFileInvoiceDollar} viewBox="0 0 500 446.6"/>}
                     dense={dense}
                 />
+            </SubMenu>
+            <SubMenu
+                handleToggle={() => handleToggle('menuSurvey')}
+                isOpen={state.menuSurvey}
+                name="Survey"
+                icon={<SvgIcon component={RiFolderChartFill}/>}
+                dense={dense}
+            >
                 <MenuItemLink
                     to={{
                         pathname: '/survey/results',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="SurveyResult"
-                    leftIcon={<SvgIcon component={FaFileInvoiceDollar} viewBox="0 0 500 446.6"/>}
+                    leftIcon={<SvgIcon component={FaChartBar} viewBox="0 0 500 446.6"/>}
                     dense={dense}
                 />
             </SubMenu>
-
         </div>
     );
 };
