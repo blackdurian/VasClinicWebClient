@@ -23,11 +23,11 @@ const postFilters = [
         <SelectInput optionText="name" />
     </ReferenceInput>,
 ];
-
+//TODO: Add Quick Filters
 export const ShiftBoardList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
-        <List {...props} sort={{ field: 'name', order: 'DESC' }}>
+        <List {...props} sort={{ field: 'id', order: 'DESC' }}>
             {isSmall ? (
                 <SimpleList
                     primaryText={record => record.name}
@@ -36,10 +36,9 @@ export const ShiftBoardList = (props) => {
                 />
             ) : (
                 <Datagrid>
+                    <TextField source="id" />
                     <TextField source="name" />
-                    <NumberField source="doseRequire" />
-                    <NumberField source="dosesPerVial" />
-                    <TextField source="mfgCompany" />
+                    <TextField source="status" />
                     <NumberField source="createdAt" />
                     <NumberField source="updatedAt" />
                 </Datagrid>
@@ -47,3 +46,4 @@ export const ShiftBoardList = (props) => {
         </List>
     );
 }
+
