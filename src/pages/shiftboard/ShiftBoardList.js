@@ -27,7 +27,7 @@ const postFilters = [
 export const ShiftBoardList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
-        <List {...props} sort={{ field: 'id', order: 'DESC' }}>
+        <List {...props} sort={{ field: 'id', order: 'ASC' }}>
             {isSmall ? (
                 <SimpleList
                     primaryText={record => record.name}
@@ -35,12 +35,12 @@ export const ShiftBoardList = (props) => {
                     tertiaryText={record => record.mfgCompany}
                 />
             ) : (
-                <Datagrid>
+                <Datagrid  >
                     <TextField source="id" />
                     <TextField source="name" />
                     <TextField source="status" />
                     <NumberField source="createdAt" />
-                    <NumberField source="updatedAt" />
+                    <EditButton />
                 </Datagrid>
             )}
         </List>

@@ -50,7 +50,7 @@ const Menu = ({ dense = false } ) => {
             >
                 <MenuItemLink
                     to={{
-                        pathname: '/employees/clinic',
+                        pathname: '/clinic/employees',
                         state: { _scrollToTop: true },
                     }}
                     primaryText="Employees"

@@ -16,13 +16,15 @@ const validatePassword =  [required(), minLength(8)];
 const genderChoices = [
     { id: 'M', name: 'Male' },
     { id: 'F', name: 'Female' },
-    { id: 'U', name: 'Unknown' },
+    { id: 'UNKNOWN', name: 'Unknown' },
 ];
 
 const roleChoices = [
     { id: 'ROLE_CLINIC_DOCTOR', name: 'Clinic Doctor' }
 ];
 // todo: bod input set max date and min date
+// todo: add confirm password input
+// todo: useStyle
 export const EmployeeCreate = (props) => {
     return(
     <Create {...props}>

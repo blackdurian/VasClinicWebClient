@@ -1,7 +1,8 @@
-import {API_BASE_URL} from '../constant/Config';
+import {API_BASE_URL, APP_USER_ROLES} from '../constant/Config';
 import inMemoryJWT from './InMemoryJwt';
 
 const LOCALSTORAGE_TOKEN = 'token';
+//TODO : Refactor Rearrange Code, Change fetch to axios
 
 export const getToken = () => {
     let token = null;
@@ -31,7 +32,7 @@ export const getAuthenticationToken= () => {
     }
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUsername = () => {
     let token = getToken();
     if (token) {
         return token.username;
@@ -43,6 +44,7 @@ export const getCurrentUser = () => {
 export const authProvider = {
     // called when the user attempts to log in
     login: ({username, password}) => {
+        //TODO: remove test console.log
         console.log("login")
         const request = new Request(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
@@ -60,19 +62,18 @@ export const authProvider = {
             })
             .then((token) => {
                 localStorage.setItem(LOCALSTORAGE_TOKEN, JSON.stringify(token));
-
             })
     },
     // called when the user clicks on the logout button
     logout: () => {
-
+//TODO: remove test console.log
         console.log("logout")
         console.log(getRefreshToken())
-        console.log(getCurrentUser())
-        if (getRefreshToken()&&getCurrentUser()) {
+
+        if (getRefreshToken()&&getCurrentUsername()) {
             let data = {
                 refreshToken: getRefreshToken(),
-                username: getCurrentUser()
+                username: getCurrentUsername()
             }
             const request = new Request(`${API_BASE_URL}/auth/logout`, {
                 method: 'POST',
@@ -81,6 +82,7 @@ export const authProvider = {
                 credentials: 'include',
             });
             fetch(request).then((response) => {
+                //TODO: remove test console.log
                 console.log(response);
                 if (response.ok) {
                     return response.text();
@@ -89,7 +91,7 @@ export const authProvider = {
                 }
             })
                 .then((responseText) => {
-                    // Do something with the response
+                    // TODO: Do something with the response
                     console.log(responseText);
                 })
                 .catch((error) => {
@@ -107,7 +109,7 @@ export const authProvider = {
 
             let data = {
                 refreshToken: getRefreshToken(),
-                username: getCurrentUser()
+                username: getCurrentUsername()
             }
             const request = new Request(API_BASE_URL + '/auth/refresh/token', {
                 method: 'POST',
@@ -123,13 +125,41 @@ export const authProvider = {
                     return response.json();
                 })
                 .then((token) => {
-                    localStorage.setItem(LOCALSTORAGE_TOKEN, JSON.stringify(token));
-                    return Promise.resolve();
+
+
+                    const roleRequest = new Request(API_BASE_URL + '/auth/user/role', {
+                        method: 'POST',
+                        body: JSON.stringify(data),
+                        headers: new Headers({'Content-Type': 'application/json'}),
+                        credentials: 'include',
+                    });
+
+                    return fetch(roleRequest)
+                        .then(response => {
+                            if (response.status < 200 || response.status >= 300) {
+                                throw new Error(response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then((_roles) => {
+                            for (let i = 0; i < _roles.length; i++){
+                                const r = _roles[i];
+                                for (let j = 0; j < APP_USER_ROLES.length; j++){
+                                    if (APP_USER_ROLES[j]===r){
+                                        console.log(r);
+                                        localStorage.setItem(LOCALSTORAGE_TOKEN, JSON.stringify(token));
+                                        return Promise.resolve();
+                                    }
+                                }
+                            }
+                            console.log("invalid role");
+                   throw new Error("Your role have no permission");
+                        })
                 })
-                .catch((error) => {
+               .catch((error) => {
                     console.log(error)
                     localStorage.removeItem(LOCALSTORAGE_TOKEN);
-                    return Promise.reject();
+                    return Promise.reject(error.toString());
                 });
         } else {
             console.log("auth null")
@@ -152,11 +182,11 @@ export const authProvider = {
         return Promise.resolve();
     }, getIdentity: () => {
         console.log("getIdentity")
-        if(getCurrentUser()){
+        if(getCurrentUsername()){
             let user = {
                 id: "",
-                fullName: getCurrentUser(),
-                avatar: `https://avatars.dicebear.com/api/croodles-neutral/${getCurrentUser()}.svg`
+                fullName: getCurrentUsername(),
+                avatar: `https://avatars.dicebear.com/api/croodles-neutral/${getCurrentUsername()}.svg`
             }
             try {
                 /*            const { id, fullName, avatar } = JSON.parse(localStorage.getItem('auth'));

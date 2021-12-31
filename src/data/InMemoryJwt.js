@@ -96,6 +96,7 @@ const inMemoryJWTManager = () => {
         return true;
     };
 
+    //TODO: eraseToken
     const eraseToken = () => {
         let currentRefreshToken = getCurrentRefreshToken();
         let currentUser = getCurrentUser();

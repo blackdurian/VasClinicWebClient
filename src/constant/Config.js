@@ -1,7 +1,7 @@
 
 export const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api';
 export const ACCESS_SECRET = '47j9UXSmr00hDhcBd9xmi6bxMIOVxQJgq4NudX0xfdr8iSLZHq8UxWNLBfFC2RqULS0hnLeVsQrY19Gqhm3FVlOz1hOVm6ONu6oBLe08LrakYfYRBTu44LMZGqgoWsUF';
-
+export const APP_USER_ROLES = ["ROLE_CLINIC_ADMIN","ROLE_CLINIC_DOCTOR"];
 export const POLL_LIST_SIZE = 30;
 export const MAX_CHOICES = 6;
 export const POLL_QUESTION_MAX_LENGTH = 140;

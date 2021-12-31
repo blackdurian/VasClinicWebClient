@@ -8,7 +8,7 @@ import {
 import {SvgIcon, makeStyles } from "@material-ui/core";
 import { MdPassword } from "react-icons/md";
 
-import {getCurrentUser} from "../../data/AuthProvider";
+import {getCurrentUsername} from "../../data/AuthProvider";
 import {API_BASE_URL} from "../../constant/Config";
 
 const useStyles = makeStyles({
@@ -46,13 +46,13 @@ export const ProfileShow = (props) => {
     <Show
         actions={<ProfileShowActions/>}
         basePath="profile"
-        id={getCurrentUser()}
+        id={getCurrentUsername()}
         onFailure={onFailure} //TODO: Fix function no mounted, when page reload
         resource="profile"
         {...props}
     >
         <SimpleShowLayout>
-            <img src={`https://avatars.dicebear.com/api/croodles-neutral/${getCurrentUser()}.svg`} alt="Avatar" className={classes.img}  />
+            <img src={`https://avatars.dicebear.com/api/croodles-neutral/${getCurrentUsername()}.svg`} alt="Avatar" className={classes.img}  />
 
             <TextField source="name" />
             <TextField source="id" label="Username"/>

@@ -12,12 +12,12 @@ import {
     SimpleForm,
     ReferenceInput,
     SelectInput,
-    TextInput,
+    TextInput, DateField, BooleanField,
 } from 'react-admin';
 
 
 
-const postFilters = [
+const shiftFilters = [
     <TextInput source="q" label="Search" alwaysOn />,
     <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
         <SelectInput optionText="name" />
@@ -36,14 +36,20 @@ export const ShiftList = (props) => {
                 />
             ) : (
                 <Datagrid>
+                    <NumberField source="id" />
+                    <DateField source="start" showTime/>
+                    <DateField source="end" showTime/>
+                    <ReferenceField label="Doctor Name" source="doctor" reference="clinic/employees">
                     <TextField source="name" />
-                    <NumberField source="doseRequire" />
-                    <NumberField source="dosesPerVial" />
-                    <TextField source="mfgCompany" />
-                    <NumberField source="createdAt" />
-                    <NumberField source="updatedAt" />
+                    </ReferenceField>
+                    <ReferenceField label="Shift Board" source="shiftBoard" reference="shift/board">
+                    <TextField source="name" />
+                    </ReferenceField>
+                    <BooleanField source="enabled" />
                 </Datagrid>
             )}
         </List>
     );
 }
+
+

@@ -23,6 +23,8 @@ import {SurveyResultList} from "../pages/surveyresult/SurveyResultList";
 import LoginWithTheme from "../pages/login/Login";
 import {EmployeeCreate} from "../pages/employee/EmployeeCreate";
 import {ShiftBoardCreate} from "../pages/shiftboard/ShiftBoardCreate";
+import {ShiftCreate} from "../pages/shift/ShiftCreate";
+import {ShiftBoardEdit} from "../pages/shiftboard/ShiftBoardEdit";
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
@@ -52,9 +54,10 @@ const App = () => (
            ]}
     >
         <Resource name="profile"/>
-        <Resource name="employees/clinic" list={EmployeeList} create={EmployeeCreate} options={{ label: 'Clinic Employees' }}/>
-        <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate}  options={{ label: 'ShiftBoard' }}/>
-        <Resource name="shift" list={ShiftList} options={{ label: 'Shift' }}/>
+
+        <Resource name="clinic/employees" list={EmployeeList} create={EmployeeCreate} options={{ label: 'Clinic Employees' }}/>
+        <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate} edit={ShiftBoardEdit}  options={{ label: 'ShiftBoard' }}/>
+        <Resource name="shift" list={ShiftList} create={ShiftCreate} options={{ label: 'Shift' }}/>
         <Resource name="vaccines" list={VaccineList}/>
         <Resource name="vaccine/inventory" list={InventoryList} options={{ label: 'Vaccine Inventory'}}/>
         <Resource name="vaccine/records" list={VaccineRecordsList} options={{ label: 'Vaccine Records' }}/>
@@ -62,6 +65,12 @@ const App = () => (
         <Resource name="appointments" list={AppointmentList}/>
         <Resource name="invoices" list={InvoiceList}/>
         <Resource name="survey/results" list={SurveyResultList} options={{ label: 'Survey Results' }}/>
+        {/*Resource for SelectInput  */}
+        <Resource name="clinic/doctor/SelectInput"/>
+
+        {/*        <Resource name="clinic/roles"/>// TODO filter
+        <Resource name="shift/board/statuses"/> // TODO filter*/}
+
     </Admin>
 );
 export default App;
