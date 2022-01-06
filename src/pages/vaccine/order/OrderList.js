@@ -15,8 +15,16 @@ import {
     TextInput,
 } from 'react-admin';
 
-
-export const VaccineRecordsList = (props) => {
+//TODO: filter OrderList
+//TODO: filter Confirm Order button
+const Filter = [
+    <TextInput source="q" label="Search" alwaysOn />,
+    <ReferenceInput source="userId" label="User" reference="users" allowEmpty>
+        <SelectInput optionText="name" />
+    </ReferenceInput>,
+];
+//TODO: received button
+export const OrderList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
@@ -28,14 +36,19 @@ export const VaccineRecordsList = (props) => {
                 />
             ) : (
                 <Datagrid>
-                    <TextField source="name" />
-                    <NumberField source="doseRequire" />
-                    <NumberField source="dosesPerVial" />
-                    <TextField source="mfgCompany" />
-                    <NumberField source="createdAt" />
-                    <NumberField source="updatedAt" />
+                    <NumberField source="id" />
+                    <TextField source="uuid" />
+                    <ReferenceField label="Vaccine" source="vaccineId" reference="vaccines">
+                        <TextField source="name" />
+                    </ReferenceField>
+                    <NumberField source="unit" />
+                    <TextField source="status" />
                 </Datagrid>
             )}
         </List>
     );
 }
+
+
+
+

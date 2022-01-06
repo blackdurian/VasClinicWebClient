@@ -6,7 +6,7 @@ import {
      DateTimeInput, ReferenceInput, SelectInput
 } from 'react-admin';
 import {useEffect, useState} from "react";
-import {API_BASE_URL} from "../../constant/Config";
+import {API_BASE_URL} from "../../../constant/Config";
 
 // TODO: change to full calender time input
 export const ShiftCreate = (props) =>{

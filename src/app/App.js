@@ -9,22 +9,24 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import CustomLayout from "../layout/Layout";
 //TODO : encapsulate to array for each page index.js
 import {ProfileShow} from "../pages/profile/ProfileShow";
-import {VaccineList} from "../pages/vaccine/VaccineList";
-import {EmployeeList} from "../pages/employee/EmployeeList";
-import {InventoryList} from "../pages/inventory/InventoryList";
-import {ShiftBoardList} from "../pages/shiftboard/ShiftBoardList";
-import {ShiftList} from "../pages/shift/ShiftList";
-import {RecipientList} from "../pages/recipients/RecipientList";
-import {AppointmentList} from "../pages/appointment/AppointmentList";
-import {VaccineRecordsList} from "../pages/vaccinerecord/VaccineRecordsList";
-import {InvoiceList} from "../pages/invoice/InvoiceList";
-import {SurveyResultList} from "../pages/surveyresult/SurveyResultList";
+import {VaccineList} from "../pages/vaccine/vaccine/VaccineList";
+import {EmployeeList} from "../pages/clinic/employee/EmployeeList";
+import {InventoryList} from "../pages/vaccine/inventory/InventoryList";
+import {ShiftBoardList} from "../pages/clinic/shiftboard/ShiftBoardList";
+import {ShiftList} from "../pages/clinic/shift/ShiftList";
+import {RecipientList} from "../pages/recipients/recipient/RecipientList";
+import {AppointmentList} from "../pages/recipients/appointment/AppointmentList";
+import {RecordsList} from "../pages/recipients/record/RecordsList";
+import {InvoiceList} from "../pages/recipients/invoice/InvoiceList";
+import {SurveyResultList} from "../pages/survey/surveyresult/SurveyResultList";
 
 import LoginWithTheme from "../pages/login/Login";
-import {EmployeeCreate} from "../pages/employee/EmployeeCreate";
-import {ShiftBoardCreate} from "../pages/shiftboard/ShiftBoardCreate";
-import {ShiftCreate} from "../pages/shift/ShiftCreate";
-import {ShiftBoardEdit} from "../pages/shiftboard/ShiftBoardEdit";
+import {EmployeeCreate} from "../pages/clinic/employee/EmployeeCreate";
+import {ShiftBoardCreate} from "../pages/clinic/shiftboard/ShiftBoardCreate";
+import {ShiftCreate} from "../pages/clinic/shift/ShiftCreate";
+import {ShiftBoardEdit} from "../pages/clinic/shiftboard/ShiftBoardEdit";
+import {OrderList} from "../pages/vaccine/order/OrderList";
+import {OrderCreate} from "../pages/vaccine/order/OrderCreate";
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
@@ -58,9 +60,10 @@ const App = () => (
         <Resource name="clinic/employees" list={EmployeeList} create={EmployeeCreate} options={{ label: 'Clinic Employees' }}/>
         <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate} edit={ShiftBoardEdit}  options={{ label: 'ShiftBoard' }}/>
         <Resource name="shift" list={ShiftList} create={ShiftCreate} options={{ label: 'Shift' }}/>
+        <Resource name="vaccines/orders/clinic" list={OrderList} create={OrderCreate} options={{ label: 'Vaccine Order'}}/>
+        <Resource name="vaccines/inventory" list={InventoryList} options={{ label: 'Vaccine Inventory'}}/>
+        <Resource name="vaccines/records" list={RecordsList} options={{ label: 'Vaccine Records' }}/>
         <Resource name="vaccines" list={VaccineList}/>
-        <Resource name="vaccine/inventory" list={InventoryList} options={{ label: 'Vaccine Inventory'}}/>
-        <Resource name="vaccine/records" list={VaccineRecordsList} options={{ label: 'Vaccine Records' }}/>
         <Resource name="recipients" list={RecipientList}/>
         <Resource name="appointments" list={AppointmentList}/>
         <Resource name="invoices" list={InvoiceList}/>
@@ -71,6 +74,8 @@ const App = () => (
         {/*        <Resource name="clinic/roles"/>// TODO filter
         <Resource name="shift/board/statuses"/> // TODO filter*/}
 
+        {/*Resource for Reference  */}
+        <Resource name="diseases"/>
     </Admin>
 );
 export default App;
