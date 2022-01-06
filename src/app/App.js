@@ -27,6 +27,7 @@ import {ShiftCreate} from "../pages/clinic/shift/ShiftCreate";
 import {ShiftBoardEdit} from "../pages/clinic/shiftboard/ShiftBoardEdit";
 import {OrderList} from "../pages/vaccine/order/OrderList";
 import {OrderCreate} from "../pages/vaccine/order/OrderCreate";
+import {InventoryCreate} from "../pages/vaccine/inventory/InventoryCreate";
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
@@ -61,7 +62,7 @@ const App = () => (
         <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate} edit={ShiftBoardEdit}  options={{ label: 'ShiftBoard' }}/>
         <Resource name="shift" list={ShiftList} create={ShiftCreate} options={{ label: 'Shift' }}/>
         <Resource name="vaccines/orders/clinic" list={OrderList} create={OrderCreate} options={{ label: 'Vaccine Order'}}/>
-        <Resource name="vaccines/inventory" list={InventoryList} options={{ label: 'Vaccine Inventory'}}/>
+        <Resource name="vaccines/inventory" list={InventoryList} create={InventoryCreate} options={{ label: 'Vaccine Inventory'}}/>
         <Resource name="vaccines/records" list={RecordsList} options={{ label: 'Vaccine Records' }}/>
         <Resource name="vaccines" list={VaccineList}/>
         <Resource name="recipients" list={RecipientList}/>

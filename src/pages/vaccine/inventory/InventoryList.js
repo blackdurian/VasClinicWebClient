@@ -22,18 +22,24 @@ export const InventoryList = (props) => {
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
             {isSmall ? (
                 <SimpleList
-                    primaryText={record => record.name}
-                    secondaryText={record => `${record.doseRequire} Dose Require`}
-                    tertiaryText={record => record.mfgCompany}
+                    primaryText={
+                        <ReferenceField label="Vaccine" source="vaccineId" reference="vaccines">
+                            <TextField source="name" />
+                        </ReferenceField>
+                    }
+                    secondaryText={record => `$ ${record.unitPrice}`}
+                    tertiaryText={record => record.stock}
                 />
             ) : (
                 <Datagrid>
-                    <TextField source="name" />
-                    <NumberField source="doseRequire" />
-                    <NumberField source="dosesPerVial" />
-                    <TextField source="mfgCompany" />
-                    <NumberField source="createdAt" />
-                    <NumberField source="updatedAt" />
+
+                    <ReferenceField label="Vaccine" source="vaccineId" reference="vaccines">
+                        <TextField source="name" />
+                    </ReferenceField>
+                    <NumberField source="stock" />
+                    <TextField source="mfgDate" />
+                    <TextField source="expiryDate" />
+                    <NumberField source="unitPrice" />
                 </Datagrid>
             )}
         </List>

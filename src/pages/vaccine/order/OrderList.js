@@ -30,9 +30,13 @@ export const OrderList = (props) => {
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
             {isSmall ? (
                 <SimpleList
-                    primaryText={record => record.name}
-                    secondaryText={record => `${record.doseRequire} Dose Require`}
-                    tertiaryText={record => record.mfgCompany}
+                    primaryText={
+                        <ReferenceField label="Vaccine" source="vaccineId" reference="vaccines">
+                            <TextField source="name" />
+                        </ReferenceField>
+                    }
+                    secondaryText={record => `${record.unit} vials`}
+                    tertiaryText={record => record.status}
                 />
             ) : (
                 <Datagrid>

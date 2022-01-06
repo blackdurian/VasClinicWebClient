@@ -5,14 +5,10 @@ import {
     SimpleList,
     Datagrid,
     TextField,
-    NumberField,
-    ReferenceField,
-    EditButton,
-    Create,
-    SimpleForm,
     ReferenceInput,
     SelectInput,
     TextInput,
+    EmailField,
 } from 'react-admin';
 
 
@@ -24,24 +20,22 @@ const postFilters = [
     </ReferenceInput>,
 ];
 
+//TODO: filters/search
 export const RecipientList = (props) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('sm'));
     return (
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
             {isSmall ? (
                 <SimpleList
-                    primaryText={record => record.name}
-                    secondaryText={record => `${record.doseRequire} Dose Require`}
-                    tertiaryText={record => record.mfgCompany}
+                    primaryText={record => record.id}
+                    secondaryText={record => record.name}
+                    tertiaryText={record => record.email}
                 />
             ) : (
                 <Datagrid>
+                    <TextField source="id" label="Username"/>
                     <TextField source="name" />
-                    <NumberField source="doseRequire" />
-                    <NumberField source="dosesPerVial" />
-                    <TextField source="mfgCompany" />
-                    <NumberField source="createdAt" />
-                    <NumberField source="updatedAt" />
+                    <EmailField source="email" />
                 </Datagrid>
             )}
         </List>
