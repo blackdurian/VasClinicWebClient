@@ -12,7 +12,7 @@ import {
     SimpleForm,
     ReferenceInput,
     SelectInput,
-    TextInput,
+    TextInput, ReferenceField, ArrayField,
 } from 'react-admin';
 
 
@@ -43,11 +43,13 @@ export const VaccineList = (props) => {
                     <NumberField source="storageTempUpperBound" label="StorageTempUpperBound Celsius"  />
                     <NumberField source="storageTempLowerBound" label="storageTempLowerBound Celsius" />
                     <NumberField source="maxStorageDays" />
-                    <ReferenceArrayField  reference="diseases" source="diseases">
+                    <ArrayField source="diseases">
                         <SingleFieldList>
-                            <ChipField source="name" />
+                            <ReferenceField source="id" reference="diseases">
+                                <ChipField source="name" />
+                            </ReferenceField>
                         </SingleFieldList>
-                    </ReferenceArrayField>
+                    </ArrayField>
                 </Datagrid>
             )}
         </List>
