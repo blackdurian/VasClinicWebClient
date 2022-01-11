@@ -105,18 +105,21 @@ export const authProvider = {
     },
     checkAuth: () => {
         console.log("checkAuth")
+        //TODO: refactor code below
         if (getRefreshToken()) {
 
             let data = {
                 refreshToken: getRefreshToken(),
                 username: getCurrentUsername()
             }
+            //TODO: convert to redux hook
             const request = new Request(API_BASE_URL + '/auth/refresh/token', {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: new Headers({'Content-Type': 'application/json'}),
                 credentials: 'include',
             });
+
             return fetch(request)
                 .then(response => {
                     if (response.status < 200 || response.status >= 300) {
@@ -126,14 +129,14 @@ export const authProvider = {
                 })
                 .then((token) => {
 
-
                     const roleRequest = new Request(API_BASE_URL + '/auth/user/role', {
                         method: 'POST',
                         body: JSON.stringify(data),
                         headers: new Headers({'Content-Type': 'application/json'}),
                         credentials: 'include',
                     });
-
+                    //TODO: check admin has assigned to clinic
+                    //check role
                     return fetch(roleRequest)
                         .then(response => {
                             if (response.status < 200 || response.status >= 300) {
@@ -153,7 +156,7 @@ export const authProvider = {
                                 }
                             }
                             console.log("invalid role");
-                   throw new Error("Your role have no permission");
+                            throw new Error("Your role have no permission");
                         })
                 })
                .catch((error) => {
