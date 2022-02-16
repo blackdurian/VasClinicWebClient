@@ -31,8 +31,8 @@ export const ShiftBoardList = (props) => {
             {isSmall ? (
                 <SimpleList
                     primaryText={record => record.name}
-                    secondaryText={record => `${record.doseRequire} Dose Require`}
-                    tertiaryText={record => record.mfgCompany}
+                    secondaryText={record => record.status }
+
                 />
             ) : (
                 <Datagrid  >

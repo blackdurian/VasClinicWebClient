@@ -30,9 +30,13 @@ export const ShiftList = (props) => {
         <List {...props} sort={{ field: 'name', order: 'DESC' }}>
             {isSmall ? (
                 <SimpleList
-                    primaryText={record => record.name}
-                    secondaryText={record => `${record.doseRequire} Dose Require`}
-                    tertiaryText={record => record.mfgCompany}
+                    primaryText={
+                        <ReferenceField reference="shift/board" source="shiftBoard">
+                            <TextField source="name" />
+                        </ReferenceField>
+                    }
+                    secondaryText={record => ` ${record.start} - ${record.end}`}
+                    tertiaryText={record => record.doctor}
                 />
             ) : (
                 <Datagrid>

@@ -74,7 +74,6 @@ const App = () => (
 
         {/*        <Resource name="clinic/roles"/>// TODO filter
         <Resource name="shift/board/statuses"/> // TODO filter*/}
-
         {/*Resource for Reference  */}
         <Resource name="diseases"/>
     </Admin>
