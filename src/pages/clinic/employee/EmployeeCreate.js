@@ -8,7 +8,9 @@ import {
     SelectInput,
     PasswordInput,
     required,
-    minLength } from 'react-admin';
+    minLength, maxValue
+} from 'react-admin';
+import moment from "moment";
 
 const validateEmail = email();
 const validatePassword =  [required(), minLength(8)];
@@ -18,7 +20,8 @@ const genderChoices = [
     { id: 'F', name: 'Female' },
     { id: 'UNKNOWN', name: 'Unknown' },
 ];
-
+const date = moment(new Date()).format('YYYY-MM-DD');
+const validateBod =  [required(), maxValue(date, "Birthday should not be after today's date.")];
 const roleChoices = [
     { id: 'ROLE_CLINIC_DOCTOR', name: 'Clinic Doctor' }
 ];
@@ -26,6 +29,7 @@ const roleChoices = [
 // todo: add confirm password input
 // todo: useStyle
 export const EmployeeCreate = (props) => {
+
     return(
     <Create {...props}>
         <SimpleForm redirect="list">
@@ -34,7 +38,8 @@ export const EmployeeCreate = (props) => {
             <TextInput label="Email" source="email" validate={validateEmail} />
             <TextInput source="name" validate={required()} />
             <SelectInput source="gender" choices={genderChoices} validate={required()} />
-            <DateInput label="Birthdate" source="bod"  maxDate={new Date()} validate={required()} />
+            <DateInput label="Birthdate" source="bod"
+                       maxDate={date} validate={validateBod} />
             <SelectInput source="role" choices={roleChoices} validate={required()} />
         </SimpleForm>
     </Create>

@@ -137,7 +137,8 @@ const Menu = ({ dense = false } ) => {
                     leftIcon={<SvgIcon component={FaCalendarCheck} viewBox="0 0 600 476.6"/>}
                     dense={dense}
                 />
-                <MenuItemLink
+                {/*TODO: Records & Invoice Module*/}
+ {/*               <MenuItemLink
                     to={{
                         pathname: '/vaccine/records',
                         state: { _scrollToTop: true },
@@ -154,9 +155,10 @@ const Menu = ({ dense = false } ) => {
                     primaryText="Invoices"
                     leftIcon={<SvgIcon component={FaFileInvoiceDollar} viewBox="0 0 500 446.6"/>}
                     dense={dense}
-                />
+                />*/}
             </SubMenu>
-            <SubMenu
+             {/*TODO: Survey Module*/}
+{/*            <SubMenu
                 handleToggle={() => handleToggle('menuSurvey')}
                 isOpen={state.menuSurvey}
                 name="Survey"
@@ -172,7 +174,7 @@ const Menu = ({ dense = false } ) => {
                     leftIcon={<SvgIcon component={FaChartBar} viewBox="0 0 500 446.6"/>}
                     dense={dense}
                 />
-            </SubMenu>
+            </SubMenu>*/}
         </div>
     );
 };

@@ -15,7 +15,7 @@ import {InventoryList} from "../pages/vaccine/inventory/InventoryList";
 import {ShiftBoardList} from "../pages/clinic/shiftboard/ShiftBoardList";
 import {ShiftList} from "../pages/clinic/shift/ShiftList";
 import {RecipientList} from "../pages/recipients/recipient/RecipientList";
-import {AppointmentList} from "../pages/recipients/appointment/AppointmentList";
+import AppointmentList from "../pages/recipients/appointment/AppointmentList";
 import {RecordsList} from "../pages/recipients/record/RecordsList";
 import {InvoiceList} from "../pages/recipients/invoice/InvoiceList";
 import {SurveyResultList} from "../pages/survey/surveyresult/SurveyResultList";
@@ -28,6 +28,7 @@ import {ShiftBoardEdit} from "../pages/clinic/shiftboard/ShiftBoardEdit";
 import {OrderList} from "../pages/vaccine/order/OrderList";
 import {OrderCreate} from "../pages/vaccine/order/OrderCreate";
 import {InventoryCreate} from "../pages/vaccine/inventory/InventoryCreate";
+import AppointmentEdit from "../pages/recipients/appointment/AppointmentEdit";
 
 const httpClient = (url, options = {}) => {
     if (!options.headers) {
@@ -43,7 +44,8 @@ const dataProvider = simpleRestProvider(API_BASE_URL, httpClient);
 <Route exact path="/resetPassword" component={ResetPassword} noLayout/>*/
 const App = () => (
     <Admin disableTelemetry
-           dashboard={Dashboard}
+           //TODO: Dashboard
+          // dashboard={Dashboard}
            loginPage={LoginWithTheme}
            authProvider={authProvider}
            dataProvider={dataProvider}
@@ -53,11 +55,10 @@ const App = () => (
                    key="profile"
                    path="/profile"
                    render={() => <ProfileShow/>}
-               />
+               />,
            ]}
     >
         <Resource name="profile"/>
-
         <Resource name="clinic/employees" list={EmployeeList} create={EmployeeCreate} options={{ label: 'Clinic Employees' }}/>
         <Resource name="shift/board" list={ShiftBoardList} create={ShiftBoardCreate} edit={ShiftBoardEdit}  options={{ label: 'ShiftBoard' }}/>
         <Resource name="shift" list={ShiftList} create={ShiftCreate} options={{ label: 'Shift' }}/>
@@ -66,7 +67,7 @@ const App = () => (
         <Resource name="vaccines/records" list={RecordsList} options={{ label: 'Vaccine Records' }}/>
         <Resource name="vaccines" list={VaccineList}/>
         <Resource name="recipients" list={RecipientList}/>
-        <Resource name="appointments" list={AppointmentList}/>
+        <Resource name="appointments" list={AppointmentList} edit={AppointmentEdit}/>
         <Resource name="invoices" list={InvoiceList}/>
         <Resource name="survey/results" list={SurveyResultList} options={{ label: 'Survey Results' }}/>
         {/*Resource for SelectInput  */}
