@@ -44,8 +44,6 @@ export const getCurrentUsername = () => {
 export const authProvider = {
     // called when the user attempts to log in
     login: ({username, password}) => {
-        //TODO: remove test console.log
-        console.log("login")
         const request = new Request(`${API_BASE_URL}/auth/login`, {
             method: 'POST',
             body: JSON.stringify({username, password}),
@@ -66,10 +64,6 @@ export const authProvider = {
     },
     // called when the user clicks on the logout button
     logout: () => {
-//TODO: remove test console.log
-        console.log("logout")
-        console.log(getRefreshToken())
-
         if (getRefreshToken()&&getCurrentUsername()) {
             let data = {
                 refreshToken: getRefreshToken(),
@@ -82,8 +76,6 @@ export const authProvider = {
                 credentials: 'include',
             });
             fetch(request).then((response) => {
-                //TODO: remove test console.log
-                console.log(response);
                 if (response.ok) {
                     return response.text();
                 } else {
@@ -92,7 +84,7 @@ export const authProvider = {
             })
                 .then((responseText) => {
                     // TODO: Do something with the response
-                    console.log(responseText);
+
                 })
                 .catch((error) => {
                     console.log(error)
@@ -104,7 +96,7 @@ export const authProvider = {
 
     },
     checkAuth: () => {
-        console.log("checkAuth")
+
         //TODO: refactor code below
         if (getRefreshToken()) {
 
@@ -171,7 +163,6 @@ export const authProvider = {
     }
     ,
     checkError: (error) => {
-        console.log("checkError")
         const status = error.status;
         if (status === 401 || status === 403) {
             localStorage.removeItem(LOCALSTORAGE_TOKEN);
